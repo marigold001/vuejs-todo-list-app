@@ -1,0 +1,53 @@
+body #container {
+  width: 500px;
+  margin: 0 auto;
+}
+body div#add-items {
+  padding: 12px;
+  background-color: #E7E8EB;
+  margin: 2px 0px;
+}
+body div#add-items input[type=text] {
+  width: 70%;
+  padding: 5px 5px;
+}
+body div#add-items input[type=text]:focus {
+  outline-color: #7CB3F1;
+}
+body div#add-items button {
+  float: right;
+  margin-right: 20px;
+  padding: 5px 5px;
+  background: #fff;
+  border: #999;
+}
+body div#assignment {
+  padding: 12px;
+  background-color: #3564A4;
+  margin: 2px 0px;
+  color: #fff;
+}
+body div#assignment button {
+  float: right;
+  background-color: #fff;
+  outline: none;
+  border: none;
+}
+body div#assignment button {
+  visibility: hidden;
+}
+body div#assignment:hover > button {
+  visibility: visible;
+}
+body ul {
+  padding: 0;
+  margin: 0;
+}
+body li {
+  list-style-type: none;
+}
+body input[type=checkbox] {
+  margin-right: 20px;
+}
+
+/*# sourceMappingURL=style.css.map */

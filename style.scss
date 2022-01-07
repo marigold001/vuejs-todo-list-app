@@ -1,0 +1,74 @@
+body {
+    
+
+    // CREATES A CONTAINER TO CENTER ITEMS
+    #container {
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    // STYLES ADD ITEMS GROUP
+    div#add-items {
+        padding: 12px;
+        background-color: #E7E8EB;
+        margin: 2px 0px;
+
+        // STYLES THE TEXT INPUT
+        input[type=text] {
+            width: 70%;
+            padding: 5px 5px;
+        }
+        // CHANGES THE INPUT FOCUS COLOR TO BLUE
+        input[type=text]:focus {
+            outline-color:  #7CB3F1;
+        }
+        // STYLES THE ADD ITEMS BUTTON
+        button {
+            float: right;
+            margin-right: 20px;
+            padding: 5px 5px;
+            background: #fff;
+            border: #999;
+        }
+    }
+
+    // CREATES STYLES FOR ASSIGNMENTS
+    div#assignment {
+        padding: 12px;
+        background-color: #3564A4;
+        margin: 2px 0px;
+        color: #fff;
+        // FLOATS THE X BUTTON TO THE RIGHT
+        button {
+            float: right;
+            background-color: #fff;
+            outline: none;
+            border: none;
+        }
+    }
+
+    // HIDES THE BUTTON
+    div#assignment button {
+        visibility: hidden;
+    }
+
+    // REVEALS THE BUTTON ON HOVER
+    div#assignment:hover > button {
+        visibility: visible;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        list-style-type: none;
+    }
+
+    
+
+    // STYLES INPUT CHECKBOXES
+    input[type=checkbox] {
+        margin-right: 20px;
+    }
+}

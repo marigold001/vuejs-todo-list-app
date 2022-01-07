@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div id="toDo">
+        <div id="container">
+            <div id="add-items">
+                <input type="checkbox">
+                <input type="text" v-model="newTask" placeholder="What do you need to do?">
+                <button @click="addItem">Clear list</button>
+            </div>
+            <div id="tasks">
+                <ul>
+                    <li v-for="task in tasks">
+                        <div id="assignment">
+                            <input type="checkbox">
+                            <span>{{ task.description }}</span>
+                            <button  v-if="hovered">X</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const toDo = {
+            data() {
+                return {
+                    tasks: [
+                        {
+                            description: 'This is an example task. Delete or add your own'
+                        },
+                        {
+                            description: 'Learn Vue.js'
+                        },
+                        {
+                            description: 'Learn JavaScript'
+                        },
+                        {
+                            description: 'Create a presentation for Es6 and JS'
+                        }
+                    ],
+                    newTask: '',
+                    hovered: true
+                }
+            },
+            methods: {
+                addItem() {
+                    var newTask = this.newTask.trim()
+                    if(newTask != '') {
+                        this.tasks.push({description: newTask})
+                        this.newTask = ''
+                    } else {
+                        alert("Enter something")
+                    }
+                },
+                // SPLICES AN ITEM FROM THE LIST
+                removeItem(index) {
+                    this.tasks.splice(index, 1)
+                },
+                
+            }
+        }
+
+        Vue.createApp(toDo).mount('#toDo')
+    </script>
+</body>
+</html>
