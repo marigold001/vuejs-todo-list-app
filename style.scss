@@ -45,6 +45,12 @@ body {
             outline: none;
             border: none;
         }
+
+        // SETS THE ASSIGNMENT EDIT INPUT FIELD TO WIDTH 70%
+        input[type=text] {
+            width: 70%; 
+            padding: 5px 5px;
+        }
     }
 
     // HIDES THE BUTTON

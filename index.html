@@ -12,17 +12,18 @@
     <div id="toDo">
         <div id="container">
             <div id="add-items">
-                <input type="checkbox">
-                <input type="text" v-model="newTask" placeholder="What do you need to do?">
-                <button @click="addItem">Clear list</button>
+                <input type="checkbox" @click="checkAllItems">
+                <input type="text" v-model="newTask" placeholder="What do you need to do?" @keyup.enter="addItem">
+                <button @click="clearItems">Clear list</button>
             </div>
             <div id="tasks">
                 <ul>
-                    <li v-for="task in tasks">
+                    <li v-for="(task, index) in tasks" :key="task.id">
                         <div id="assignment">
-                            <input type="checkbox">
-                            <span>{{ task.description }}</span>
-                            <button  v-if="hovered">X</button>
+                            <input type="checkbox"  v-model="task.checked">
+                            <input type="text" v-if="task === editingTask" v-model="task.description" @blur="endEditing(task)">
+                            <span @dblclick="editTask(task)" v-if="task !== editingTask">{{ task.description }}</span>
+                            <button @click="removeItem(task)">X</button>
                         </div>
                     </li>
                 </ul>
@@ -38,37 +39,75 @@
                 return {
                     tasks: [
                         {
-                            description: 'This is an example task. Delete or add your own'
+                            description: 'This is an example task. Delete or add your own',
+                            checked: false
                         },
                         {
-                            description: 'Learn Vue.js'
+                            description: 'Learn Vue.js',
+                            checked: false
                         },
                         {
-                            description: 'Learn JavaScript'
+                            description: 'Learn JavaScript',
+                            checked: false
                         },
                         {
-                            description: 'Create a presentation for Es6 and JS'
+                            description: 'Create a presentation for Es6 and JS',
+                            checked: false
                         }
                     ],
                     newTask: '',
-                    hovered: true
+                    editingTask: {}
                 }
             },
             methods: {
+                // CHECKS OR UNCHECKS CHECKBOXES BY LOOPING THROUGH TASKS AND SELECTING CHECKED FIELDS AND GIVING THEM OPPOSITE OF THEIR CURRENT VALUE
+                checkAllItems() {
+                    for(var i = 0; i < this.tasks.length; i++) {
+                        this.tasks[i].checked = !this.tasks[i].checked
+                    }
+                    
+                    // for(var i = 0; i < this.tasks.length; i++) {
+                    //     if(this.tasks[i].checked == true) {
+                    //         this.tasks[i].checked = false
+                    //     } else if(this.tasks[i].checked == false) {
+                    //         this.tasks[i].checked = true
+                    //     }
+                    // }
+                },
                 addItem() {
                     var newTask = this.newTask.trim()
                     if(newTask != '') {
-                        this.tasks.push({description: newTask})
+                        this.tasks.push({description: newTask, checked: false})
                         this.newTask = ''
                     } else {
                         alert("Enter something")
                     }
                 },
-                // SPLICES AN ITEM FROM THE LIST
-                removeItem(index) {
-                    this.tasks.splice(index, 1)
+
+                // CLEARS THE LIST SETS THE TASKS ARRAY TO AN EMPTY ARRAY
+                clearItems() {
+                    this.tasks = []
+                },
+
+                // PASSES THE TASK TO THE EDITING TASK OBJECT
+                editTask(task) {
+                    this.editingTask = task
                 },
                 
+                // SAVES THE EDIT OF THE TASK
+                endEditing(task) {
+                    this.editingTask = {};
+                    if(task.description.trim() === "") {
+                        this.removeItem(task)
+                    }
+                },
+
+                // SPLICES AN ITEM FROM THE LIST
+                removeItem(task) {
+                    var index = this.tasks.indexOf(task)
+                    this.tasks.splice(index, 1)
+                },
+            
             }
         }
 
